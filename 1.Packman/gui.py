@@ -68,6 +68,11 @@ def moving(event):
     text_upd()
 
 
+def text_upd():
+    global fileld,textScore
+    fileld.delete(textScore)
+    textScore = fileld.create_text(1570, 20, fill="white", font="Fixedsys 20", text="Score:" + str(score))
+
 w=1680;h=1020;score=0
 win=Tk()
 win.attributes('-fullscreen', True)
