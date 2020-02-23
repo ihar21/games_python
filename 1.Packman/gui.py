@@ -42,7 +42,7 @@ class Point:
         global score
         if self.have:
             if type(other)==Packman:
-                if self.x>other.x and self.x+self.size<other.x+other.size:
+                if (self.x>other.x and self.x+self.size<other.x+other.size) and (self.y>other.y and self.y+self.size<other.y+other.size):
                     return True
     def __del__(self):
         global fileld
@@ -52,7 +52,7 @@ class Point:
 
 
 def moving(event):
-    global player,testPoint
+    global player,testPoint,score
     if (event.keysym=="W" or event.keysym=="w") and player.y>0:
         player.move(0,-5)
     elif (event.keysym=="S" or event.keysym=="s") and player.y<h-player.size:
@@ -63,7 +63,9 @@ def moving(event):
         player.move(-5,0)
     # one item eror
     if testPoint.have and testPoint.cheakDie(player):
+        score+=1
         del testPoint
+    text_upd()
 
 
 w=1680;h=1020;score=0
@@ -76,4 +78,5 @@ exbut.place(x=1663)
 win.bind('<Key>',moving)
 player=Packman(300,300,2,50)
 testPoint=Point(400,400,10,10)
+textScore=fileld.create_text(1570,20,fill="white",font="Fixedsys 20",text="Score:"+str(score))
 win.mainloop()
