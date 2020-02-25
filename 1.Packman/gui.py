@@ -1,42 +1,41 @@
 from tkinter import *
-class Packman:
-    have=False
-    def __init__(self,x,y,speed,size=30,color="yellow"):
-        self.x=x
-        self.y=y
-        self.speed=speed
-        self.color=color
-        self.size=size
-        Packman.__draw(self)
-        Packman.have = True
 
-    def __draw(self):
-        global fileld
-        if Packman.have:
-            fileld.delete(self.body)
-        self.body=fileld.create_oval(self.x,self.y,self.x+self.size,self.y+self.size,fill=self.color,outline=self.color)
-
-    def move(self,x,y):
-        self.x+=x*self.speed
-        self.y+=y*self.speed
-        Packman.__draw(self)
-
-class Point:
-    def __init__(self,x,y,size,cost,color="orange"):
-        self.x=x
-        self.y=y
-        self.size=size
-        self.cost=cost
-        self.color=color
-        self.have=False
-        Point.__draw(self)
-        self.have=True
+class SomeObject:
+    def __init__(self,x,y):
+        self.x = x
+        self.y = y
 
     def __draw(self):
         global fileld
         if self.have:
             fileld.delete(self.body)
         self.body=fileld.create_oval(self.x,self.y,self.x+self.size,self.y+self.size,fill=self.color,outline=self.color)
+
+class Packman(SomeObject):
+    def __init__(self,x,y,speed,size=30,color="yellow"):
+        super().__init__(x,y)
+        self.speed=speed
+        self.color=color
+        self.size=size
+        self.have = False
+        super()._SomeObject__draw()
+        self.have = True
+
+    def move(self,x,y):
+        self.x+=x*self.speed
+        self.y+=y*self.speed
+        super()._SomeObject__draw()
+
+class Point(SomeObject):
+    def __init__(self,x,y,size,cost,color="orange"):
+        super().__init__(x, y)
+        self.size=size
+        self.cost=cost
+        self.color=color
+        self.have=False
+        self.body=None
+        super()._SomeObject__draw()
+        self.have=True
 
     def cheakDie(self,other):
         global score
@@ -49,6 +48,10 @@ class Point:
         print("d")
         fileld.delete(self.body)
         #self.__dict__.clear()
+
+class Wall(SomeObject):
+    def __init__(self,x,y,x1,y1):
+        super().__init__()
 
 
 def moving(event):
