@@ -51,18 +51,39 @@ class Point(SomeObject):
 
 class Wall(SomeObject):
     def __init__(self,x,y,x1,y1):
-        super().__init__()
+        super().__init__(x,y)
+        self.x1=x1
+        self.y1=y1
+        Wall.__draw(self)
+
+    def __draw(self):
+        global fileld
+        self.body = fileld.create_rectangle(self.x, self.y, self.x1, self.y1, fill="gray",outline="gray")
+
+    def __contains__(self, othen):
+        
+
+    def collisiomCheak(self,othen):
+        global px,py
+        if (othen.x+othen.size<self.x or othen.x>self.x1) and (othen.y+othen.size>self.y or othen.y<self.y1):
+            return True
+        else:
+            othen.x-=1
+            return False
+
+
+
 
 
 def moving(event):
     global player,testPoint,score
-    if (event.keysym=="W" or event.keysym=="w") and player.y>0:
+    if (event.keysym=="W" or event.keysym=="w")and testWall.collisiomCheak(player) and player.y>0:
         player.move(0,-5)
-    elif (event.keysym=="S" or event.keysym=="s") and player.y<h-player.size:
+    elif (event.keysym=="S" or event.keysym=="s")and testWall.collisiomCheak(player) and player.y<h-player.size:
         player.move(0,5)
-    elif (event.keysym == "D" or event.keysym == "d") and player.x<w-player.size:
+    elif (event.keysym == "D" or event.keysym == "d")and testWall.collisiomCheak(player) and player.x<w-player.size:
         player.move(5,0)
-    elif (event.keysym == "A" or event.keysym == "a") and player.x>0:
+    elif (event.keysym == "A" or event.keysym == "a")and testWall.collisiomCheak(player) and player.x>0:
         player.move(-5,0)
     # one item eror
     if testPoint.have and testPoint.cheakDie(player):
@@ -84,7 +105,10 @@ exbut=Button(win,text="x",height=0,width=1,bg="red",command=win.destroy)
 fileld.pack(side=BOTTOM)
 exbut.place(x=1663)
 win.bind('<Key>',moving)
-player=Packman(300,300,2,50)
+player=Packman(300,300,2,40)
+#test
 testPoint=Point(400,400,10,10)
+testWall=Wall(500,200,540,600)
+#end
 textScore=fileld.create_text(1570,20,fill="white",font="Fixedsys 20",text="Score:"+str(score))
 win.mainloop()
