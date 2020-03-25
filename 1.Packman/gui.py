@@ -60,7 +60,7 @@ class Wall(SomeObject):
         global fileld
         self.body = fileld.create_rectangle(self.x, self.y, self.x1, self.y1, fill="gray",outline="gray")
 
-    def __contains__(self, othen):
+    #def __contains__(self, othen):
         
 
     def collisiomCheak(self,othen):
