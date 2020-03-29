@@ -134,7 +134,6 @@ class Point:
     def __init__(self,fiw,fih,snake):
         self.xEnd=fiw
         self.yEnd=fih
-        print(self.xEnd,self.yEnd)
         self.x = randint(0, self.xEnd-1)
         self.y = randint(0, self.yEnd-1)
         self.snakeLink=snake
@@ -146,7 +145,6 @@ class Point:
         for seg in self.snakeLink.segments:
             if self.x==seg.x and self.y==seg.y:
                 self.creatCoords()
-        print(self.x,self.y)
 
     def cheackTake(self):
         if self.snakeLink.segments[0].x==self.x and self.snakeLink.segments[0].y==self.y:
