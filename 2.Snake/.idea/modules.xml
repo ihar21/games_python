@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/2.Snake.iml" filepath="$PROJECT_DIR$/.idea/2.Snake.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../MachineLearnigComputerView/.idea/MachineLearnigComputerView.iml" filepath="$PROJECT_DIR$/../../../MachineLearnigComputerView/.idea/MachineLearnigComputerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../.idea/packman.iml" filepath="$PROJECT_DIR$/../../.idea/packman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../poligener/.idea/poligener.iml" filepath="$PROJECT_DIR$/../../../poligener/.idea/poligener.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../vtex/.idea/vtex.iml" filepath="$PROJECT_DIR$/../../../vtex/.idea/vtex.iml" />
     </modules>
   </component>
 </project>
